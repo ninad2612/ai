@@ -30,3 +30,10 @@ if __name__ == '__main__':
     # Call the DFS function with the start node
     print("Following is the Depth-First Search traversal:")
     dfs(graph, 0)
+
+Initialize a set to track visited nodes.
+Define a recursive helper function dfs_helper that takes a node as an argument:
+Mark the current node as visited.
+Print the value of the current node (for visualization purposes).
+Explore all unvisited neighbors of the current node recursively by calling dfs_helper on each neighbor.
+Call the dfs_helper function with the start node to initiate the DFS traversal.
