@@ -57,3 +57,10 @@ print("Optimal distance:", distance)
 # OUTPUT can vary bc random fucntion is used
 # Optimal solution: [5, 1, 2, 4, 3]
 # Optimal distance: 35
+
+generate_neighbors(solution): This function generates neighboring solutions by swapping the positions of two cities in the current solution. It returns a list of all possible neighbors.
+calculate_distance(solution, distances): This function calculates the total distance of the given solution based on the distances between cities provided in the distances dictionary.
+tsp_hill_climbing(cities, distances): This function implements the Hill Climbing algorithm for the TSP. It starts with a random initial solution, calculates its distance, and then iteratively generates neighboring solutions, selecting the one with the shortest distance. The process continues until no better neighbor can be found.
+It utilizes generate_neighbors() to generate neighboring solutions.
+It selects the neighbor with the shortest distance and updates the current solution and distance if it improves upon the current best solution.
+Example usage: It provides an example of using the algorithm with a set of cities and their distances. It prints the optimal solution (order of cities) and the optimal distance found by the Hill Climbing algorithm.
