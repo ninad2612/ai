@@ -46,3 +46,12 @@ if __name__ == '__main__':
     # Call the BFS function with the start node and goal node
     print("Following is the Breadth-First Search traversal:")
     bfs(graph, 0, 3)
+
+Initialize a queue to store nodes to be visited and a set to track visited nodes.
+Add the start node to the queue and mark it as visited.
+While the queue is not empty:
+Dequeue a node from the front of the queue.
+If the dequeued node is the goal node, return, indicating that the goal node has been reached.
+Print the value of the dequeued node.
+Enqueue all unvisited neighbors of the dequeued node and mark them as visited.
+If the goal node is not found after exploring all reachable nodes, print a message indicating that the goal node was not found.
