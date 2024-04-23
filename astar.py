@@ -65,3 +65,18 @@ if path:
     print(f"Path from {start_node} to {goal_node}: {path}")
 else:
     print(f"No path found from {start_node} to {goal_node}")
+
+
+
+Initialize the open set with the start node, setting its g-score (the cost of getting from the start node to that node) to 0 and its f-score (the sum of g-score and the heuristic estimate) to the heuristic value for the start node.
+While the open set is not empty:
+Pop the node with the lowest f-score from the open set.
+If the popped node is the goal node, reconstruct the path and return it.
+Otherwise, for each neighbor of the current node:
+Calculate the tentative g-score for the neighbor by adding the cost of the current node to the neighbor's g-score.
+Calculate the tentative f-score for the neighbor by adding its tentative g-score to the heuristic estimate.
+If the tentative f-score is lower than the current f-score for the neighbor:
+Update the came_from dictionary to remember the path.
+Update the g-score and f-score of the neighbor.
+Add the neighbor to the open set with its updated f-score.
+If the open set becomes empty and the goal node hasn't been reached, return None, indicating that there's no path from the start node to the goal node.
