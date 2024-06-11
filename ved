@@ -1,0 +1,63 @@
+import pandas as pd
+import time
+
+# Start the timer
+start_time = time.time()
+
+# Load the initial data
+data = pd.read_csv('datu copy.csv')
+
+# Read the very first 630 rows of the initial data
+initial_data = data.head(630).copy()  # Use .copy() to ensure we're working on a copy of the DataFrame
+latest_data = initial_data.copy()
+
+# Increment htwind from its initial values up to a maximum of 5
+while latest_data['htwind'].max() < 5:
+    # Perform calculations using .loc to avoid SettingWithCopyWarning
+    latest_data.loc[:, 'htwind'] += 1
+    latest_data.loc[:, 'new_range'] = latest_data['Range'] + latest_data['tw']
+
+    # Create a new DataFrame with the new data
+    new_data = latest_data[['new_range', 'Tof', 'Vel', 'Temp', 'Den', 'CrWind', 'Ctemp', 'bWgt', 'vinc', 'vdec', 'hw', 'tw', 'winc', 'wdec', 'htwind']].copy()
+    new_data.columns = ['Range', 'Tof', 'Vel', 'Temp', 'Den', 'CrWind', 'Ctemp', 'bWgt', 'vinc', 'vdec', 'hw', 'tw', 'winc', 'wdec', 'htwind']
+
+    # Append the new data to the DataFrame
+    data = pd.concat([data, new_data], ignore_index=True)
+
+    # Update latest_data to include the new rows
+    latest_data = new_data
+
+    # Append the new data to the CSV file
+    new_data.to_csv('datu.csv', mode='a', header=False, index=False)
+
+# Reset latest_data to the initial 630 rows after incrementing
+latest_data = initial_data.copy()
+
+# Decrement htwind from its initial values down to a minimum of -5
+while latest_data['htwind'].min() > -5:
+    # Perform calculations using .loc to avoid SettingWithCopyWarning
+    latest_data.loc[:, 'htwind'] -= 1
+    latest_data.loc[:, 'new_range'] = latest_data['Range'] + latest_data['tw']
+
+    # Create a new DataFrame with the new data
+    new_data = latest_data[['new_range', 'Tof', 'Vel', 'Temp', 'Den', 'CrWind', 'Ctemp', 'bWgt', 'vinc', 'vdec', 'hw', 'tw', 'winc', 'wdec', 'htwind']].copy()
+    new_data.columns = ['Range', 'Tof', 'Vel', 'Temp', 'Den', 'CrWind', 'Ctemp', 'bWgt', 'vinc', 'vdec', 'hw', 'tw', 'winc', 'wdec', 'htwind']
+
+    # Append the new data to the DataFrame
+    data = pd.concat([data, new_data], ignore_index=True)
+
+    # Update latest_data to include the new rows
+    latest_data = new_data
+
+    # Append the new data to the CSV file
+    new_data.to_csv('datu.csv', mode='a', header=False, index=False)
+
+# End the timer
+end_time = time.time()
+
+# Print completion message
+print('DONE !!!')
+
+# Calculate and print the execution time
+execution_time = end_time - start_time
+print(f"Execution time: {execution_time} seconds")
