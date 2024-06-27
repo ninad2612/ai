@@ -1,0 +1,12 @@
+from transformers import AutoTokenizer, AutoModel
+
+# Define model name
+model_name = 'sentence-transformers/all-MiniLM-L12-v2'
+
+# Load tokenizer and model from Hugging Face
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModel.from_pretrained(model_name)
+
+# Save the tokenizer and model locally
+tokenizer.save_pretrained('F:\LLM\Embedding_Model\all-MiniLM-L12-v2-tokenizer')
+model.save_pretrained('F:\LLM\Embedding_Model\all-MiniLM-L12-v2-model')
